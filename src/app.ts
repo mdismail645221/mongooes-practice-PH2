@@ -1,6 +1,7 @@
 import express, {Application, Request, Response, NextFunction, urlencoded} from 'express';
 const app:Application = express()
 import cors from 'cors';
+import { Schema } from 'mongoose';
 
 // middle ware
 //using cors
@@ -22,7 +23,7 @@ app.get('/', (req:Request, res:Response) => {
 
   // step1:  creating interface 
   interface IUser {
-   id: number;
+   id: string;
    role: 'student';
    password: string;
    name: {
@@ -40,7 +41,25 @@ app.get('/', (req:Request, res:Response) => {
   }
 
   // step2: Schema user Interface 
-  
+  const userSchema = new Schema <IUser>({
+    id: {type: String, required: true,unique: true},
+    role: {type: String,required: true,unique: true
+    },
+    password: {type: String,required: true},
+    name: {
+      firstName: {type: String,required:true},
+      middleName: {type: String},
+      lastName: {type: String,required: true}
+    },
+    dateOfBirth: {type: String, required: true},
+    gender: {type: String, required: true},
+    email: {type: String},
+    contactNo:{type: String, required: true},
+    emergencyContactNo: {type: String, required: true},
+    presentAddress: {type: String, required: true},
+    permanentAddress: {type: String, required: true}
+
+  })
 
 
 
