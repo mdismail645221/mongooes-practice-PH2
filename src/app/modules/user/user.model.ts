@@ -21,5 +21,6 @@ import { IUser } from "./user.interface";
   })
   // step3 : Model 
   const User = model<IUser>("User", userSchema);
+  console.log({'model': User})
 
   export default User;
