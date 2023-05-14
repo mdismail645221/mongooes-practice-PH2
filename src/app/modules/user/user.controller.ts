@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express"
-import { createUserToDB, getUserFromDB } from "./user.service"
+import { createUserToDB, getUserByIdFromDB, getUserFromDB } from "./user.service"
+import { IUser } from "./user.interface"
 
 
 export const getUsers = async (req:Request, res:Response) => {
@@ -17,21 +18,35 @@ export const getUsers = async (req:Request, res:Response) => {
     }
 }
 
+// Findone API Method 
+export const getUserById = async (req:Request, res: Response, next: NextFunction) => {
+  try {
+    const {id} = req.params;
+    console.log(id)
+    const user = await getUserByIdFromDB(id)
+    res.status(200).json({
+      status: 'success',
+      data: user,
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: false,
+      message: `Could't Found`,
+    })
+  }
+}
+
 export const createUser = async(req:Request, res:Response, next:NextFunction) => {
-  try{
       const user = req.body;
       const users = await createUserToDB(user)
+      console.log({users})
         res.status(200).json({
           status: "success",
           data: users
       })
-    }catch(error){
-      res.status(400).json({
-          status: false,
-          meassage: `could't found data`
-      })
-    }
 }
+
+
 
  // interesting a test data 
     /**

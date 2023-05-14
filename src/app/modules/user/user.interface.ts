@@ -1,6 +1,7 @@
   // step1:  creating interface 
   export interface IUser {
     id: string;
+    role: string,
     password: string;
     name: {
      firstName: string;

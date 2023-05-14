@@ -4,6 +4,7 @@ import { IUser } from "./user.interface";
   // step2: Schema user Interface 
   const userSchema = new Schema <IUser>({
     id: {type: String, required: true,unique: true},
+    role: {type:String},
     password: {type: String,required: true},
     name: {
       firstName: {type: String,required:true},
@@ -17,10 +18,9 @@ import { IUser } from "./user.interface";
     emergencyContactNo: {type: String, required: true},
     presentAddress: {type: String, required: true},
     permanentAddress: {type: String, required: true}
-
   })
   // step3 : Model 
   const User = model<IUser>("User", userSchema);
-  console.log({'model': User})
+  // console.log({'model': User})
 
   export default User;

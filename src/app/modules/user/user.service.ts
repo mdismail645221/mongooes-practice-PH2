@@ -2,13 +2,23 @@ import { IUser } from "./user.interface";
 import User from "./user.model"
 
  //asyn fucntion
- export const createUserToDB =async (playload:IUser):Promise<IUser> => {
-    const user = new User(playload)
-    await user.save()
-    return user;
-  }
 
-  export const getUserFromDB = async ()=> {
+  export const getUserFromDB = async ():Promise<IUser[]>=> {
     const users = await User.find();
     return  users
   }
+
+  // FindOne Api Method 
+export const getUserByIdFromDB = async (playload: string):Promise<IUser | null> => {
+  const userId = await User.findOne({id: playload}, {name : 1, presentAddress: 1})
+  return userId
+}
+
+  export const createUserToDB =async (playload:IUser):Promise<IUser> => {
+    console.log({playload})
+    const user = new User(playload);
+    const result = await user.save();
+    console.log({result})
+    return result;
+  }
+
