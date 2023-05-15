@@ -17,8 +17,15 @@ export const getUserByIdFromDB = async (playload: string):Promise<IUser | null> 
   export const createUserToDB =async (playload:IUser):Promise<IUser> => {
     console.log({playload})
     const user = new User(playload);
+    console.log(user.fullName())
     const result = await user.save();
-    console.log({result})
+    // console.log({result})
     return result;
+  }
+
+  
+  export const getAdminUserFromToDB = async() => {
+    const admins = await User.getAdminUsers();
+    return admins;
   }
 
