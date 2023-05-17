@@ -52,15 +52,30 @@ $and: [
 
     db.practice.find({"skills.name: {$in : ['JAVASCRIPT', 'PYTHON']}})
 
-
-// যদি সেইম ফিল্ড হয় তাহলে implecit operator ব্যবহার করতে পারবে না।  simple operator কে বলা হয়ে থাকে। 
+// যদি সেইম ফিল্ড হয় তাহলে implecit operator ব্যবহার করতে পারবে না। simple operator কে বলা হয়ে থাকে।
 // আর যদি সেইম ফিল্ড না হয় তাহলে explecit operator ব্যবহার করতে পারবে। ($and operator কে বলা হয়ে থাকে explecit operator)
 //
 
-04. indexing operator 
+4.  indexing operator
     db.practice.find({"interests.0": "Travelling"}).project({"interests": 1})
 
-05. $all operator 
+5.  $all operator 
     db.practice.find({interests: {$all: ['Travelling', 'Gaming']}}).project({interests: 1})
 
-06. 
+6.  elemMatch operator
+    db.practice.find({skills: {$elemMatch: {name: 'JAVA', level: 'Intermidiate'}}}).project({skills: 1})
+    একটি অ্যারে অফ অবজেক্ট মধ্যে কুুয়েরি চালাতে হলে, elemMatch operator ব্যবহার করতে হয়।
+
+7.  updateOne ($set operator )
+    db.practice.updateOne()
+    db.practice.updateOne(
+        {\_id: ObjectId("6406ad65fc13ae5a400000c7")},
+        {
+            $set: {
+            country: 'Pakistan'
+            }
+        },
+        {option: operator}
+    )
+
+08. 
