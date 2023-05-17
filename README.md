@@ -56,3 +56,11 @@ $and: [
 // যদি সেইম ফিল্ড হয় তাহলে implecit operator ব্যবহার করতে পারবে না।  simple operator কে বলা হয়ে থাকে। 
 // আর যদি সেইম ফিল্ড না হয় তাহলে explecit operator ব্যবহার করতে পারবে। ($and operator কে বলা হয়ে থাকে explecit operator)
 //
+
+04. indexing operator 
+    db.practice.find({"interests.0": "Travelling"}).project({"interests": 1})
+
+05. $all operator 
+    db.practice.find({interests: {$all: ['Travelling', 'Gaming']}}).project({interests: 1})
+
+06. 
