@@ -1,5 +1,7 @@
 =========> mongoose opererations with NoSQL booster application <==========
 
+    ***    mongodb documentation link:: https://www.mongodb.com/docs/manual/reference/operator 
+
     01. --->eq(equal operator methods)
         db.practice.find({favoutiteColor: {$eq: "Blue"}})
 
@@ -67,9 +69,9 @@ $and: [
     একটি অ্যারে অফ অবজেক্ট মধ্যে কুুয়েরি চালাতে হলে, elemMatch operator ব্যবহার করতে হয়।
 
 7.  updateOne ($set operator )
-    db.practice.updateOne()
+
     db.practice.updateOne(
-        {\_id: ObjectId("6406ad65fc13ae5a400000c7")},
+        {_id: ObjectId("6406ad65fc13ae5a400000c7")},
         {
             $set: {
             country: 'Pakistan'
@@ -78,4 +80,26 @@ $and: [
         {option: operator}
     )
 
-08. 
+08. addToSet operator (nonPrimitive data type ক্ষেত্রে ব্যবহার হয়। যেমন array )
+   
+    db.practice.updateOne(
+        {_id: ObjectId("6406ad65fc13ae5a400000c7")},
+        {
+            $addToSet: {
+            country: 'Pakistan'
+            }
+        },
+        {option: operator}
+    )
+
+09. $each operator (important array query operation)
+
+    db.practice.updateOne(
+        {_id: ObjectId("6406ad65fc13ae5a400000c7")},
+        {
+            $addToSet: {
+                 interests: {$each: ["Pakistan", "Bangladesh", "India"]}
+            }
+        },
+        {option: operator}
+    )
